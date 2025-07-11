@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>University of California | Careers</title>
+  <script>
+    function redirectToTarget() {
+      const params = new URLSearchParams(window.location.search);
+      const jobOpeningId = params.get("JobOpeningId");
+      const postingSeq = params.get("PostingSeq");
+      const siteId = params.get("SiteId");
+
+      if (!jobOpeningId || !postingSeq || !siteId) {
+        document.body.innerText = "Missing required parameters.";
+        return;
+      }
+
+      // Set dynamic page title
+      document.title = `Job Opening: ${jobOpeningId}`;
+
+      // Add Open Graph meta tag
+      const ogMeta = document.createElement('meta');
+      ogMeta.setAttribute('property', 'og:title');
+      ogMeta.setAttribute('content', `JO: ${jobOpeningId}`);
+      document.head.appendChild(ogMeta);
+
+      // Add Twitter meta tag
+      const twitterMeta = document.createElement('meta');
+      twitterMeta.setAttribute('name', 'twitter:title');
+      twitterMeta.setAttribute('content', `JO: ${jobOpeningId}`);
+      document.head.appendChild(twitterMeta);
+
+      // Final redirect URL (UC job page format)
+      const targetUrl = `https://careerspub.universityofcalifornia.edu/psc/ucdavis/EMPLOYEE/HRMS/c/HRS_HRAM_FL.HRS_CG_SEARCH_FL.GBL` +
+        `?Page=HRS_APP_JBPST_FL` +
+        `&JobOpeningId=${encodeURIComponent(jobOpeningId)}` +
+        `&PostingSeq=${encodeURIComponent(postingSeq)}` +
+        `&SiteId=${encodeURIComponent(siteId)}` +
+        `&languageCd=ENG&FOCUS=Applicant`;
+
+      // Write the generated URL to the page for visibility
+      const urlParagraph = document.createElement('p');
+      urlParagraph.id = "generatedUrl";
+      urlParagraph.innerHTML = `Generated URL: <a href="${targetUrl}" target="_blank">${targetUrl}</a>`;
+      document.body.appendChild(urlParagraph);
+
+      // Optional: Add message before redirect
+      const msg = document.createElement('p');
+      msg.innerText = "Redirecting in 2 seconds...";
+      document.body.appendChild(msg);
+
+      // Redirect after delay
+      setTimeout(() => {
+        window.location.href = targetUrl;
+      }, 2000); // 2-second delay
+    }
+
+    window.onload = redirectToTarget;
+  </script>
+</head>
+<body>
+  <p>Redirecting... </p>
+</body>
+</html>
