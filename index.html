@@ -1,7 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>University of California | Careers</title>
+  <title>Redirecting...</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+    }
+
+    .loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
   <script>
     function redirectToTarget() {
       const params = new URLSearchParams(window.location.search);
@@ -10,7 +33,7 @@
       const siteId = params.get("SiteId");
 
       if (!jobOpeningId || !postingSeq || !siteId) {
-        document.body.innerText = "Missing required parameters.";
+        document.body.innerHTML = "<p style='color:red;'>Missing required parameters.</p>";
         return;
       }
 
@@ -29,7 +52,7 @@
       twitterMeta.setAttribute('content', `JO: ${jobOpeningId}`);
       document.head.appendChild(twitterMeta);
 
-      // Final redirect URL (UC job page format)
+      // Final redirect URL
       const targetUrl = `https://careerspub.universityofcalifornia.edu/psc/ucdavis/EMPLOYEE/HRMS/c/HRS_HRAM_FL.HRS_CG_SEARCH_FL.GBL` +
         `?Page=HRS_APP_JBPST_FL` +
         `&JobOpeningId=${encodeURIComponent(jobOpeningId)}` +
@@ -37,46 +60,22 @@
         `&SiteId=${encodeURIComponent(siteId)}` +
         `&languageCd=ENG&FOCUS=Applicant`;
 
-      // Write the generated URL to the page for visibility
-      const urlParagraph = document.getElementById('generatedUrl');
-     // urlParagraph.id = "generatedUrl";
-      urlParagraph.innerHTML = `Generated URL: <a href="${targetUrl}" target="_blank">${targetUrl}</a>`;
-      document.body.appendChild(urlParagraph);
-
-      // Optional: Add message before redirect
-      const msg = document.getElementById('generatedUrl');
-      msg.innerText = "Redirecting in 2 seconds...";
-      document.body.appendChild(msg);
+      // Write the generated URL
+      document.getElementById("generatedUrl").innerHTML =
+        `Generated URL: <a href="${targetUrl}" target="_blank">${targetUrl}</a>`;
 
       // Redirect after delay
       setTimeout(() => {
         window.location.href = targetUrl;
-      }, 2000); // 2-second delay
+      }, 2000);
     }
 
     window.onload = redirectToTarget;
   </script>
-
-  <style>
-    .loader {
-  border: 16px solid #f3f3f3; /* Light grey */
-  border-top: 16px solid #3498db; /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style> 
 </head>
 <body>
-  
-<div class="loader"></div>
- <p id="generatedUrl">Preparing URL...</p>
- <p>Redirecting in 2 seconds...</p>
+  <div class="loader"></div>
+  <p id="generatedUrl">Preparing URL...</p>
+  <p>Redirecting in 2 seconds...</p>
 </body>
 </html>
