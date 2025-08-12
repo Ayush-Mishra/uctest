@@ -38,13 +38,13 @@
         `&languageCd=ENG&FOCUS=Applicant`;
 
       // Write the generated URL to the page for visibility
-      const urlParagraph = document.createElement('p');
+      const urlParagraph = document.getElemtbyID('generatedUrl');
       urlParagraph.id = "generatedUrl";
       urlParagraph.innerHTML = `Generated URL: <a href="${targetUrl}" target="_blank">${targetUrl}</a>`;
       document.body.appendChild(urlParagraph);
 
       // Optional: Add message before redirect
-      const msg = document.createElement('p');
+      const msg = document.getElemtbyID('generatedUrl');
       msg.innerText = "Redirecting in 2 seconds...";
       document.body.appendChild(msg);
 
@@ -75,7 +75,8 @@
 </head>
 <body>
   
-  <p>Redirecting... </p>
-  <div class="loader"></div>
+<div class="loader"></div>
+  <p id="generatedUrl">Preparing URL...</p>
+  <p>Redirecting in 2 seconds...</p>
 </body>
 </html>
