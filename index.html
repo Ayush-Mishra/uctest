@@ -72,13 +72,14 @@
       const jobOpeningId = params.get("JobOpeningId");
       const postingSeq = params.get("PostingSeq");
       const siteId = params.get("SiteId");
+      const BU = params.get("bu");
 
       if (!jobOpeningId || !postingSeq || !siteId) {
         document.querySelector(".redirect-text").innerText = "Missing required parameters.";
         return;
       }
 
-      const targetUrl = `https://careerspub.universityofcalifornia.edu/psc/ucdavis/EMPLOYEE/HRMS/c/HRS_HRAM_FL.HRS_CG_SEARCH_FL.GBL?Page=HRS_APP_JBPST_FL&JobOpeningId=${jobOpeningId}&PostingSeq=${postingSeq}&SiteId=${siteId}&languageCd=ENG&FOCUS=Applicant`;
+      const targetUrl = `https://careerspub.universityofcalifornia.edu/psc/${BU}/EMPLOYEE/HRMS/c/HRS_HRAM_FL.HRS_CG_SEARCH_FL.GBL?Page=HRS_APP_JBPST_FL&JobOpeningId=${jobOpeningId}&PostingSeq=${postingSeq}&SiteId=${siteId}&languageCd=ENG&FOCUS=Applicant`;
 
    
     //  document.querySelector("meta[property='og:url']").setAttribute("content", targetUrl);
