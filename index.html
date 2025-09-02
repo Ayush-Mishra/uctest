@@ -74,7 +74,7 @@
       const siteId = params.get("SiteId");
       const BU = params.get("bu");
 
-      if (!jobOpeningId || !postingSeq || !siteId) {
+      if (!jobOpeningId || !postingSeq || !siteId || !BU) {
         document.querySelector(".redirect-text").innerText = "Missing required parameters.";
         return;
       }
